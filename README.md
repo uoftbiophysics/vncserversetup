@@ -63,6 +63,7 @@ from your email. Allow MobaXterm to save the password.
 You can use the default config if asked on first login.
 
 Troubleshooting:
+
 Authentication failure: If you have previously made a MobaXterm
 SSH or VNC session and are making a new session with new username
 or password, you may not be prompted to enter your new password.
