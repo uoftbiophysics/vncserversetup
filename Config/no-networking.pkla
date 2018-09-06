@@ -1,0 +1,7 @@
+[Changing system wide network manager connections]
+Identity=unix-group:nonadmin
+Action=org.freedesktop.NetworkManager.*
+ResultAny=no
+ResultInactive=no
+ResultActive=no
+

@@ -1,0 +1,17 @@
+[Unit]
+Description=Start TightVNC server for a specific user (in name), defined by index at startup
+After=syslog.target network.target
+
+[Service]
+Type=forking
+User=TMP
+Group=TMP
+WorkingDirectory=/home/TMP
+
+PIDFile=/home/TMP/.vnc/%H:%i.pid
+ExecStartPre=-/usr/bin/vncserver -kill :%i > /dev/null 2>&1
+ExecStart=/usr/bin/vncserver :%i -localhost -nolisten tcp -depth 24
+ExecStop=/usr/bin/vncserver -kill :%i
+
+[Install]
+WantedBy=multi-user.target
