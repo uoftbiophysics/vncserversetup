@@ -7,7 +7,7 @@ As an admin the only config files you have to change are <users.txt> and <ssmtp.
 
 format is port number separated by user email:
 
-1:user1@domain.com
+1:user1@domain.com\
 2:user2@domain.com
 
 where 1(2) is the VNC port number (5900 + 1(2)). Usernames generated are truncated at the @ symbol.
