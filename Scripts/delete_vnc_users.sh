@@ -1,6 +1,5 @@
 #!/bin/bash
-#delete users
-#now for each user in users.txt
+#delete VNC users
 systemctl daemon-reload
 while IFS=':' read -r index email || [[ -n "$email" ]]; do
 	USER=${email%@*}
@@ -9,7 +8,7 @@ while IFS=':' read -r index email || [[ -n "$email" ]]; do
 	rm /etc/systemd/system/${USER}vnc@.service
 	deluser --remove-home $USER
 	userdel -f $USER #in case used by process
-	rm ../Config/users_generated.txt
+	rm ../Config/VNC_users_generated.txt
 	rm /temp/.X$index-lock
 	rm /tmp/.X11-unix/X$index
-done < ../Config/users.txt
+done < ../Config/VNC_users.txt
