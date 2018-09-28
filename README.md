@@ -3,7 +3,7 @@ To use just clone and run master.sh or scripts individually in /scripts director
 
 As an admin the only config files you have to change are <users.txt> and <ssmtp.conf>.
 
-[users.txt]
+[VNC_users.txt]
 
 format is port number separated by user email:
 
@@ -11,6 +11,13 @@ format is port number separated by user email:
 2:user2@domain.com
 
 where 1(2) is the VNC port number (5900 + 1(2)). Usernames generated are truncated at the @ symbol.
+
+[SSH_users.txt]
+
+format is just user emails on each line:
+
+user1@domain.com\
+user2@domain.com
 
 [ssmtp.conf]
 
@@ -21,7 +28,7 @@ PRIVACY NOTICE
 The ssmtp config file stores the sender account credentials in plain text.... so that account and the passwords it delivers are
 only as secure as the box is. Make sure this is read only exclusive to root.
 
-Also note that <users_generated.txt> also locally stores user passwords for debugging. Just comment out the line in <create_users_2.sh>
+Also note that <*_users_generated.txt> also locally stores user passwords for debugging. Just comment out the line in <create_*_users_*.sh>
 to prevent this.
 
 MobaXterm Instructions:
