@@ -12,7 +12,7 @@ while IFS=':' read -r index email || [[ -n "$email" ]]; do
 		PSS="$(openssl rand -base64 6)"
 	
 		#put the username and generated password in a temporary file
-		echo "$index: $USER $PSS" >> ../Config/users_generated.txt
+		echo "$index: $USER $PSS" >> ../Config/VNC_users_generated.txt
 
 		#create users and add to nonadmin group
 		adduser --disabled-password --gecos "" $USER
@@ -43,7 +43,7 @@ while IFS=':' read -r index email || [[ -n "$email" ]]; do
 		chmod 700 /home/$USER
 
 		#send email to user with username and generated password
-		printf "Subject: Credentials for UTSG biophysics server\n\nusername: $USER\npassword: $PSS\nport: 5900+$index" | ssmtp $email
+		printf "Subject: Credentials for UTSG biophysics server\n\nusername: $USER\npassword: $PSS\nport: 5900+$index\n\n Please change this password immediately using passwd command after initial login!" | ssmtp $email
 	fi
 	
-done < ../Config/users.txt
+done < ../Config/VNC_users.txt
