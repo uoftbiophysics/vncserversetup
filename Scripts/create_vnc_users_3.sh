@@ -46,7 +46,7 @@ while IFS=':' read -r index email || [[ -n "$email" ]]; do
 		chmod 700 /media/homes/$USER
 
 		#send email to user with username and generated password
-		printf "Subject: Credentials for UTSG biophysics server\n\nusername: $USER\npassword: $PSS\nport: 5900+$index\n\n Please change this password immediately using passwd command after initial login!" | ssmtp $email
+		printf "Subject: Credentials for UTSG biophysics server\n\nusername: $USER\npassword(both SSH and VNC): $PSS\nport: 5900+$index\n\n Please change this password immediately using passwd command after initial login!\nYou will also have to change your VNC password (same as password above) by running change_vnc_password.sh in your user/.vnc directory." | ssmtp $email
 	fi
 	
 done < ../Config/VNC_users.txt
