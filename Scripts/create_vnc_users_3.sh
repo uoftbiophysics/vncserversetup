@@ -18,29 +18,32 @@ while IFS=':' read -r index email || [[ -n "$email" ]]; do
 		adduser --disabled-password --gecos "" $USER
 		echo -e "$PSS\n$PSS\n" | passwd $USER
 		adduser $USER nonadmin
+		
+		#change location of user home directory
+		usermod -m -d /media/homes/$USER $USER
 
 		#create necessary vnc files
-		mkdir /home/$USER/.vnc
-		echo $PSS | vncpasswd -f > /home/$USER/.vnc/passwd
-		cp ../Config/xstartup /home/$USER/.vnc
-		echo "" > /home/$USER/.vnc/$(hostname):$index.pid
+		mkdir /media/homes/$USER/.vnc
+		echo $PSS | vncpasswd -f > /media/homes/$USER/.vnc/passwd
+		cp ../Config/xstartup /media/homes/$USER/.vnc
+		echo "" > /media/homes/$USER/.vnc/$(hostname):$index.pid
 
 		#create scripts that allow users to change vncpassword and fix vnc in case of accidental logout
-		echo '#!/bin/bash' > /home/$USER/.vnc/change_vnc_password.sh
-		echo 'vncpasswd' >> /home/$USER/.vnc/change_vnc_password.sh
-		echo '#!/bin/bash' > /home/$USER/.vnc/restart_vnc.sh
-		echo "vncserver -kill :$index" >> /home/$USER/.vnc/restart_vnc.sh
-		echo "vncserver :$index -localhost -nolisten tcp -depth 24" >> /home/$USER/.vnc/restart_vnc.sh
-		chown -R $USER:$USER /home/$USER/.vnc
+		echo '#!/bin/bash' > /media/homes/$USER/.vnc/change_vnc_password.sh
+		echo 'vncpasswd' >> /media/homes/$USER/.vnc/change_vnc_password.sh
+		echo '#!/bin/bash' > /media/homes/$USER/.vnc/restart_vnc.sh
+		echo "vncserver -kill :$index" >> /media/homes/$USER/.vnc/restart_vnc.sh
+		echo "vncserver :$index -localhost -nolisten tcp -depth 24" >> /media/homes/$USER/.vnc/restart_vnc.sh
+		chown -R $USER:$USER /media/homes/$USER/.vnc
 
 		#lock down file permissions
-		chmod 700 /home/$USER/.vnc
-		chmod 664 /home/$USER/.vnc/$(hostname):$index.pid
-		chmod 755 /home/$USER/.vnc/xstartup
-		chmod 600 /home/$USER/.vnc/passwd
-		chmod 500 /home/$USER/.vnc/change_vnc_password.sh
-		chmod 500 /home/$USER/.vnc/restart_vnc.sh
-		chmod 700 /home/$USER
+		chmod 700 /media/homes/$USER/.vnc
+		chmod 664 /media/homes/$USER/.vnc/$(hostname):$index.pid
+		chmod 755 /media/homes/$USER/.vnc/xstartup
+		chmod 600 /media/homes/$USER/.vnc/passwd
+		chmod 500 /media/homes/$USER/.vnc/change_vnc_password.sh
+		chmod 500 /media/homes/$USER/.vnc/restart_vnc.sh
+		chmod 700 /media/homes/$USER
 
 		#send email to user with username and generated password
 		printf "Subject: Credentials for UTSG biophysics server\n\nusername: $USER\npassword: $PSS\nport: 5900+$index\n\n Please change this password immediately using passwd command after initial login!" | ssmtp $email

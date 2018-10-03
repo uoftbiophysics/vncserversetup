@@ -19,9 +19,12 @@ while IFS='' read -r email || [[ -n "$email" ]]; do
 		echo -e "$PSS\n$PSS\n" | passwd $USER
 		adduser $USER nonadmin
 
-		#lock down file permissions
-		chmod 700 /home/$USER
+		#change location of home for user
+		usermod -m -d /media/homes/$USER $USER
 
+		#lock down file permissions
+		chmod 700 /media/homes/$USER
+		
 		#send email to user with username and generated password
 		printf "Subject: Credentials for UTSG biophysics server\n\nusername: $USER\npassword: $PSS\n\n Please change this password immediately using passwd command after initial login!" | ssmtp $email
 	fi
