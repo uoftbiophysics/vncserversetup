@@ -10,7 +10,7 @@ WorkingDirectory=/media/homes/TMP
 
 PIDFile=/media/homes/TMP/.vnc/%H:%i.pid
 ExecStartPre=-/usr/bin/vncserver -kill :%i > /dev/null 2>&1
-ExecStart=/usr/bin/vncserver :%i -localhost -nolisten tcp -depth 24
+ExecStart=/usr/bin/vncserver :%i -geometry 1600x900 -localhost -nolisten tcp -depth 24
 ExecStop=/usr/bin/vncserver -kill :%i
 
 [Install]
