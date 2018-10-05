@@ -26,6 +26,9 @@ while IFS='' read -r email || [[ -n "$email" ]]; do
 		mkdir /media/storage/"$USER"_storage
 		chown -R $USER:$USER /media/storage/"$USER"_storage
 
+		#create environment variable for storage
+		echo "STORAGE=/media/storage/${USER}_storage" >> /media/homes/$USER/.profile
+
 		#lock down file permissions
 		chmod 700 /media/homes/$USER
 		chmod 700 /media/storage/"$USER"_storage

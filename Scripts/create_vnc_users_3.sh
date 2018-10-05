@@ -27,6 +27,9 @@ while IFS=':' read -r index email || [[ -n "$email" ]]; do
 		chown -R $USER:$USER /media/storage/"$USER"_storage
 		chmod 700 /media/storage/"$USER"_storage
 
+		#create environment variable for storage
+		echo "STORAGE=/media/storage/${USER}_storage" >> /media/homes/$USER/.profile
+
 		#create necessary vnc files
 		mkdir /media/homes/$USER/.vnc
 		echo $PSS | vncpasswd -f > /media/homes/$USER/.vnc/passwd
