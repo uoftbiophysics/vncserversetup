@@ -4,7 +4,8 @@ systemctl daemon-reload
 while IFS='' read -r email || [[ -n "$email" ]]; do
 	USER=${email%@*}
 	deluser $USER
-	rm -r /media/homes/$USER
+	#rm -r /media/homes/$USER
+	#rm -r /media/storage/"$USER"_storage
 	userdel -f $USER #in case used by process
 done < ../Config/SSH_users.txt
 

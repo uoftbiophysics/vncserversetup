@@ -22,6 +22,11 @@ while IFS=':' read -r index email || [[ -n "$email" ]]; do
 		#change location of user home directory
 		usermod -m -d /media/homes/$USER $USER
 
+		#create storage folder
+		mkdir /media/storage/"$USER"_storage
+		chown -R $USER:$USER /media/storage/"$USER"_storage
+		chmod 700 /media/storage/"$USER"_storage
+
 		#create necessary vnc files
 		mkdir /media/homes/$USER/.vnc
 		echo $PSS | vncpasswd -f > /media/homes/$USER/.vnc/passwd

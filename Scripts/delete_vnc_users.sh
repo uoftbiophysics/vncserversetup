@@ -7,7 +7,8 @@ while IFS=':' read -r index email || [[ -n "$email" ]]; do
 	systemctl disable ${USER}vnc@$index.service
 	rm /etc/systemd/system/${USER}vnc@.service
 	deluser $USER
-	rm -r /media/homes/$USER
+	#rm -r /media/homes/$USER
+	#rm -r /media/storage/"$USER"_storage
 	userdel -f $USER #in case used by process
 	rm /temp/.X$index-lock
 	rm /tmp/.X11-unix/X$index
