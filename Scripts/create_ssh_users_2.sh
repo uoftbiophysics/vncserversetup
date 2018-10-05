@@ -22,8 +22,13 @@ while IFS='' read -r email || [[ -n "$email" ]]; do
 		#change location of home for user
 		usermod -m -d /media/homes/$USER $USER
 
+		#create storage folder
+		mkdir /media/storage/"$USER"_storage
+		chown -R $USER:$USER /media/storage/"$USER"_storage
+
 		#lock down file permissions
 		chmod 700 /media/homes/$USER
+		chmod 700 /media/storage/"$USER"_storage
 		
 		#send email to user with username and generated password
 		printf "Subject: Credentials for UTSG biophysics server\n\nusername: $USER\npassword: $PSS\n\n Please change this password immediately using passwd command after initial login!" | ssmtp $email
