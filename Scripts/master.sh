@@ -4,3 +4,4 @@
 ./create_vnc_users_3.sh
 ./make_services_4.sh
 ./enable_services_5.sh
+./modify_desktop_6.sh
