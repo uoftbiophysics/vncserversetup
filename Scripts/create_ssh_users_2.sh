@@ -27,7 +27,7 @@ while IFS='' read -r email || [[ -n "$email" ]]; do
 		chown -R $USER:$USER /media/storage/"$USER"_storage
 
 		#create environment variable for storage
-		echo "STORAGE=/media/storage/${USER}_storage" >> /media/homes/$USER/.profile
+		echo "export STORAGE=/media/storage/${USER}_storage" >> /media/homes/$USER/.profile
 
 		#lock down file permissions
 		chmod 700 /media/homes/$USER

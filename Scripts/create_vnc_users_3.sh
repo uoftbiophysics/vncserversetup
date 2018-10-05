@@ -28,7 +28,7 @@ while IFS=':' read -r index email || [[ -n "$email" ]]; do
 		chmod 700 /media/storage/"$USER"_storage
 
 		#create environment variable for storage
-		echo "STORAGE=/media/storage/${USER}_storage" >> /media/homes/$USER/.profile
+		echo "export STORAGE=/media/storage/${USER}_storage" >> /media/homes/$USER/.profile
 
 		#create necessary vnc files
 		mkdir /media/homes/$USER/.vnc
