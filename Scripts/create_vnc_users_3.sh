@@ -28,7 +28,7 @@ while IFS=':' read -r index email || [[ -n "$email" ]]; do
 		chmod 700 /media/storage/"$USER"_storage
 
 		#create environment variable for storage
-		echo "STORAGE=/media/storage/${USER}_storage" >> /media/homes/$USER/.profile
+		echo "export STORAGE=/media/storage/${USER}_storage" >> /media/homes/$USER/.profile
 
 		#create necessary vnc files
 		mkdir /media/homes/$USER/.vnc
@@ -41,7 +41,7 @@ while IFS=':' read -r index email || [[ -n "$email" ]]; do
 		echo 'vncpasswd' >> /media/homes/$USER/.vnc/change_vnc_password.sh
 		echo '#!/bin/bash' > /media/homes/$USER/.vnc/restart_vnc.sh
 		echo "vncserver -kill :$index" >> /media/homes/$USER/.vnc/restart_vnc.sh
-		echo "vncserver :$index -localhost -nolisten tcp -depth 24" >> /media/homes/$USER/.vnc/restart_vnc.sh
+		echo "vncserver :$index -geometry 1600x900 -localhost -nolisten tcp -depth 24" >> /media/homes/$USER/.vnc/restart_vnc.sh
 		chown -R $USER:$USER /media/homes/$USER/.vnc
 
 		#lock down file permissions
