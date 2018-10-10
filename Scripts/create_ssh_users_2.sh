@@ -19,12 +19,12 @@ while IFS='' read -r email || [[ -n "$email" ]]; do
 		echo -e "$PSS\n$PSS\n" | passwd $USER
 		adduser $USER nonadmin
 
-		#change location of home for user
-		usermod -m -d /media/homes/$USER $USER
-
 		#create storage folder
 		mkdir /media/storage/"$USER"_storage
 		chown -R $USER:$USER /media/storage/"$USER"_storage
+
+		#change location of home for user
+		usermod -m -d /media/homes/$USER $USER
 
 		#create environment variable for storage
 		echo "export STORAGE=/media/storage/${USER}_storage" >> /media/homes/$USER/.profile
