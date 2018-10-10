@@ -1,0 +1,6 @@
+Summary
+timestamp, name, driver_version, temperature.gpu, utilization.gpu [%], utilization.memory [%], memory.total [MiB], memory.free [MiB], memory.used [MiB]
+2018/10/03 18:38:01.399, GeForce GTX 1080, 390.48, 38, 5 %, 3 %, 8111 MiB, 8021 MiB, 90 MiB
+
+Compute Processes
+pid, process_name, used_gpu_memory [MiB]

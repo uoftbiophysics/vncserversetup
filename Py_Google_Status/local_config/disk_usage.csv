@@ -1,0 +1,15 @@
+Home Directory Usage
+1.3M,/media/homes/test
+36M,/media/homes/test2
+94M,/media/homes/test3
+
+Home Summary
+Filesystem,Size,Used,Avail,Use%,Mounted,on
+/dev/md126,5.5T,218M,5.2T,1%,/media/homes
+
+Storage Usage
+
+
+Storage Summary
+Filesystem,Size,Used,Avail,Use%,Mounted,on
+/dev/md127,5.5T,89M,5.2T,1%,/media/storage
