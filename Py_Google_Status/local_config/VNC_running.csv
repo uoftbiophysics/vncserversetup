@@ -1,0 +1,6 @@
+tcp,0,0,127.0.0.1:5901,0.0.0.0:*,LISTEN,21041/Xtightvnc,
+tcp,0,0,127.0.0.1:5902,0.0.0.0:*,LISTEN,1790/Xtightvnc,
+tcp,0,0,127.0.0.1:5903,0.0.0.0:*,LISTEN,1786/Xtightvnc,
+unix,2,[,ACC,],STREAM,LISTENING,154271,21041/Xtightvnc,/tmp/.X11-unix/X1
+unix,2,[,ACC,],STREAM,LISTENING,72821,1786/Xtightvnc,/tmp/.X11-unix/X3
+unix,2,[,ACC,],STREAM,LISTENING,58390,1790/Xtightvnc,/tmp/.X11-unix/X2
