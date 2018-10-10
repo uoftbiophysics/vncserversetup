@@ -19,16 +19,16 @@ while IFS=':' read -r index email || [[ -n "$email" ]]; do
 		echo -e "$PSS\n$PSS\n" | passwd $USER
 		adduser $USER nonadmin
 		
-		#change location of user home directory
-		usermod -m -d /media/homes/$USER $USER
-
 		#create storage folder
 		mkdir /media/storage/"$USER"_storage
 		chown -R $USER:$USER /media/storage/"$USER"_storage
 		chmod 700 /media/storage/"$USER"_storage
 
+		#change location of user home directory
+                usermod -m -d /media/homes/$USER $USER
+		
 		#create environment variable for storage
-		echo "export STORAGE=/media/storage/${USER}_storage" >> /media/homes/$USER/.profile
+                echo "export STORAGE=/media/storage/${USER}_storage" >> /media/homes/$USER/.profile
 
 		#create necessary vnc files
 		mkdir /media/homes/$USER/.vnc
@@ -41,7 +41,7 @@ while IFS=':' read -r index email || [[ -n "$email" ]]; do
 		echo 'vncpasswd' >> /media/homes/$USER/.vnc/change_vnc_password.sh
 		echo '#!/bin/bash' > /media/homes/$USER/.vnc/restart_vnc.sh
 		echo "vncserver -kill :$index" >> /media/homes/$USER/.vnc/restart_vnc.sh
-		echo "vncserver :$index -geometry 1600x900 -localhost -nolisten tcp -depth 24" >> /media/homes/$USER/.vnc/restart_vnc.sh
+		echo "vncserver :$index -localhost -geometry 1600x900 -nolisten tcp -depth 24" >> /media/homes/$USER/.vnc/restart_vnc.sh
 		chown -R $USER:$USER /media/homes/$USER/.vnc
 
 		#lock down file permissions
