@@ -36,6 +36,7 @@ mpstat -P ALL | tr -s '[:blank:]' ',' > $WORKINGDIR/cpumem_usage.csv
 echo -e "\n" >> hw_usage.csv
 echo "" >> $WORKINGDIR/cpumem_usage.csv
 top -n 1 -b | head -20 | tr -s '[:blank:]' ',' >> $WORKINGDIR/cpumem_usage.csv
+sed "s/^[ ,]*//" -i $WORKINGDIR/cpumem_usage.csv
 
 #provide sensor readout for machine to csv
 sensors | tr -s '[:blank:]' ',' > $WORKINGDIR/temp_status_raw.csv
