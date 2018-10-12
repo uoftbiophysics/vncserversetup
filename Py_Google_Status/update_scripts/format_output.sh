@@ -7,29 +7,36 @@ rm $WORKINGDIR/cpumem_usage.csv
 rm $WORKINGDIR/graphics_usage.csv
 rm $WORKINGDIR/temp_status.csv
 
+echo "Home Summary" > $WORKINGDIR/disk_usage.csv
+df -h /dev/md/hd0 | tr -s '[:blank:]' ',' >> $WORKINGDIR/disk_usage.csv
+echo "" >> $WORKINGDIR/disk_usage.csv
+
+echo "Storage Summary" >> $WORKINGDIR/disk_usage.csv
+df -h /dev/md/sd0 | tr -s '[:blank:]' ',' >> $WORKINGDIR/disk_usage.csv
+echo "" >> $WORKINGDIR/disk_usage.csv
+
 #give home directory disk usage for each user in csv
-echo "Home Directory Usage" > $WORKINGDIR/disk_usage.csv
+echo "Home Directory Usage" >> $WORKINGDIR/disk_usage.csv
 for filename in /media/homes/*;do
 if [ "$filename" != "/media/homes/lost+found" ]; then
 du -sh $filename | tr -s '[:blank:]' ',' >> $WORKINGDIR/disk_usage.csv
 fi
 done
-echo "" >> $WORKINGDIR/disk_usage.csv
-echo "Home Summary" >> $WORKINGDIR/disk_usage.csv
-df -h /dev/md/hd0 | tr -s '[:blank:]' ',' >> $WORKINGDIR/disk_usage.csv
 
 #give storage directory disk usage for each user
 echo "" >> $WORKINGDIR/disk_usage.csv
-echo "Storage Usage" >> $WORKINGDIR/disk_usage.csv
 echo "" >> $WORKINGDIR/disk_usage.csv
+echo "" >> $WORKINGDIR/disk_usage.csv
+echo "" >> $WORKINGDIR/disk_usage.csv
+echo "" >> $WORKINGDIR/disk_usage.csv
+echo "" >> $WORKINGDIR/disk_usage.csv
+echo "" >> $WORKINGDIR/disk_usage.csv
+echo "Storage Usage" >> $WORKINGDIR/disk_usage.csv
 for filename in /media/storage/*;do
 if [ "$filename" != "/media/storage/lost+found" ]; then
 du -sh $filename | tr -s '[:blank:]' ',' >> $WORKINGDIR/disk_usage.csv
 fi
 done
-echo "" >> $WORKINGDIR/disk_usage.csv
-echo "Storage Summary" >> $WORKINGDIR/disk_usage.csv
-df -h /dev/md/sd0 | tr -s '[:blank:]' ',' >> $WORKINGDIR/disk_usage.csv
 
 #hardware usage output to csv
 mpstat -P ALL | tr -s '[:blank:]' ',' > $WORKINGDIR/cpumem_usage.csv
