@@ -4,6 +4,7 @@
 apt-get update
 apt-get install openssh-server tightvncserver
 apt-get install ssmtp
+apt-get install at
 
 #change file permissions to prevent users from shutting down in terminal
 chmod 700 /sbin/shutdown

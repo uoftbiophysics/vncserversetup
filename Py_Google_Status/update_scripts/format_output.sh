@@ -39,11 +39,16 @@ fi
 done
 
 #hardware usage output to csv
-mpstat -P ALL | tr -s '[:blank:]' ',' > $WORKINGDIR/cpumem_usage.csv
-echo -e "\n" >> hw_usage.csv
-echo "" >> $WORKINGDIR/cpumem_usage.csv
-top -n 1 -b | head -20 | tr -s '[:blank:]' ',' >> $WORKINGDIR/cpumem_usage.csv
+top -n 1 -b | head -71 | tr -s '[:blank:]' ',' > $WORKINGDIR/cpumem_usage.csv
 sed "s/^[ ,]*//" -i $WORKINGDIR/cpumem_usage.csv
+echo "" >> $WORKINGDIR/cpumem_usage.csv
+echo "potential users of threads" >> $WORKINGDIR/cpumem_usage.csv
+echo "" >> $WORKINGDIR/cpumem_usage.csv
+for filename in /media/homes/*;do
+if [ "$filename" != "/media/homes/lost+found" ]; then
+echo $filename  >> $WORKINGDIR/cpumem_usage.csv
+fi
+done
 
 #provide sensor readout for machine to csv
 sensors | tr -s '[:blank:]' ',' > $WORKINGDIR/temp_status_raw.csv
@@ -59,8 +64,6 @@ nvidia-smi --query-gpu=timestamp,name,driver_version,temperature.gpu,utilization
 echo "" >> $WORKINGDIR/graphics_usage.csv
 echo "Compute Processes" >> $WORKINGDIR/graphics_usage.csv
 nvidia-smi --query-compute-apps=pid,process_name,used_memory --format=csv >> $WORKINGDIR/graphics_usage.csv
-
-
 
 
 

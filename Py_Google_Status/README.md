@@ -52,7 +52,9 @@ and start manipulating them with gspread_sheets.py.
 
 If you want regular updates, also run this script as a cron job. For example, making updates to sheets at two minute intervals would look like:
 
-*/2 * * * * /usr/bin/python /working_directory/gspread_sheets.py /working_directory/
+*/3 * * * * /usr/bin/python /working_directory/gspread_sheets.py /working_directory/
+
+*Note, cronjobs can become synchronized, so if both a sudo cron and user cron interact try to make these intervals unequal.
 
 
 
