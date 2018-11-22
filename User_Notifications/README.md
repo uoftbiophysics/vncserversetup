@@ -1,8 +1,8 @@
 Two sample scripts and configuration files to automate a time delayed server reboot, and general blanket messages to users.
 
-timed_reboot.sh calls notifyUsers.sh to send emails alerting users of the reboot, and performs the reboot at a time specified in the script.\
+timed_reboot.sh calls notifyUsers.sh to send emails alerting users of the reboot, and performs the reboot at a time specified in the script.
 
-notifyUsers.sh can be used alone to send blanket messages to users.\
+notifyUsers.sh can be used alone to send blanket messages to users.
 
 
 Configuration files: 
@@ -28,4 +28,4 @@ Format same as above. To be used as a followup reminder immediately before the s
 
 [reboot.log]
 
-File that stores reboot "at" jobs for diagnostics. You can view existing "at" jobs by typing <atq> in the terminal.
+File that stores reboot "at" jobs for diagnostics. You can view existing "at" jobs by typing atq in the terminal.
