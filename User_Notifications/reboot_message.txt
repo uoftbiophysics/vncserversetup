@@ -1,1 +1,0 @@
-MESSAGE="Subject: *** server is rebooting this week!\n\n Reboot is scheduled for 10AM this week Friday. \n\n Please refrain from running jobs during this time, or if you do make sure to save your parameters."
