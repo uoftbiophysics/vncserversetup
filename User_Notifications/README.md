@@ -1,31 +1,24 @@
-Two sample scripts and configuration files to automate a time delayed server reboot, and general blanket messages to users.
+A collection of scripts and a configuration file used to send blanket messages to users, and schedule reboots.
 
-timed_reboot.sh calls notifyUsers.sh to send emails alerting users of the reboot, and performs the reboot at a time specified in the script.
+[reboot_date_messages.txt]
 
-notifyUsers.sh can be used alone to send blanket messages to users.
+Here you can enter a time and date for a reboot notification, and the reboot itself.
 
+<generate_dates_thisweek.sh>:
 
-Configuration files: 
+Instead of populating the configuration file yourself, if you have agreed on a reboot schedule just modify and run <generate_dates_thisweek.sh> to update the configuration file above.
 
-[notify_message.txt]
+<notifyUsers.sh>
 
-format is:
+This script takes its first argument and sends it as an email to all users.
 
-MESSAGE="Subject: Important message \n\n Dear Users,....."
+<timed_reboot.sh>:
 
-This should be used to send general messages to users of the server through notify_message.sh
+This script uses the configuration file to schedule and perform the reboots and emails.
 
+<automatic_reboot.sh>
 
-[reboot_message.txt]
-
-Format same as above, but specific to server reboots. This is the contents of the first email to users notifying them of the server reboot date.
-
-
-[reboot_message_2.txt]
-
-Format same as above. To be used as a followup reminder immediately before the server reboot is scheduled.
+If you notice you need a reboot this week, and are happy with the default dates and times in <generate_dates_thisweek.sh>, you can run this script safely.
 
 
-[reboot.log]
-
-File that stores reboot "at" jobs for diagnostics. You can view existing "at" jobs by typing atq in the terminal.
+TO CANCEL THESE JOBS: as sudo run "atq" to see the list of jobs and their job numbers. Run "atrm [job number]" to kill each job.
