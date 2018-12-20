@@ -4,4 +4,4 @@ EMAILDATE=2018-12-20
 REBOOTTIME=10:00
 REBOOTDATE=2018-12-21
 MESSAGE="Subject: *** Server is rebooting this week!\n\nReboot is scheduled for $(date -d "$REBOOTDATE""T""$REBOOTTIME").\n\nPlease refrain from running jobs during this time, or if you do make sure to save your parameters."
-MESSAGE2="Subject: ***FINAL REMINDER: Server is rebooting this week!\n\nReboot is scheduled for $(date -d "$REBOOTDATE""T""$REBOOTTIME").\n\nPlease refrain from running jobs during this time, or if you do make sure to save your parameters.\n\nIf this time doesn't work well for you, contact one of the system admins to cancel this reboot."
+MESSAGE2="Subject: ***FINAL REMINDER: Server is rebooting this week!\n\nReboot is scheduled for $(date -d "$REBOOTDATE""T""$REBOOTTIME").\n\nPlease refrain from running jobs during this time, or if you do make sure to save your parameters.\n\nIf this time does not work well for you, contact one of the system admins to cancel this reboot."
