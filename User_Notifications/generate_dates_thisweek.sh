@@ -6,10 +6,14 @@ ThursdayTime="13:00" #1PM Thursday notification before Friday at 10AM shutdown
 
 #this is the important stuff
 TODAY=$(date +%A)
-if [ $TODAY = "Thursday" ] || [ $TODAY = "Friday" ]; 
-then
+if [ $TODAY = "Thursday" ]; then
 Friday=$(date -d'Friday+7 days' +%Y-%m-%d) #what date is next week friday?
 Thursday=$(date -d'Thursday+7 days' +%Y-%m-%d) #date next week Thursday for second email notification?
+
+elif [ $TODAY = "Friday" ]; then
+Friday=$(date -d'Friday+7 days' +%Y-%m-%d) #what date is next friday?
+Thursday=$(date -dthis-Thursday +%Y-%m-%d) #date this Thursday (means next thursday) for second email notification?
+
 else
 Friday=$(date -dthis-Friday +%Y-%m-%d) #what date is this friday?
 Thursday=$(date -dthis-Thursday +%Y-%m-%d) #date this Thursday for second email notification?

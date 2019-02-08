@@ -1,7 +1,7 @@
 #set reboot date, time in format hh:mm (24hr time), date yyyy-mm-dd 
-EMAILTIME=20:00
-EMAILDATE=2018-12-20
+EMAILTIME=13:00
+EMAILDATE=2019-02-14
 REBOOTTIME=10:00
-REBOOTDATE=2018-12-21
-MESSAGE="Subject: *** Server is rebooting this week!\n\nReboot is scheduled for $(date -d "$REBOOTDATE""T""$REBOOTTIME").\n\nPlease refrain from running jobs during this time, or if you do make sure to save your parameters."
+REBOOTDATE=2019-02-15
+MESSAGE="Subject: *** Server is scheduled to reboot soon!\n\nReboot is scheduled for $(date -d "$REBOOTDATE""T""$REBOOTTIME").\n\nPlease refrain from running jobs during this time, or if you do make sure to save your parameters."
 MESSAGE2="Subject: ***FINAL REMINDER: Server is rebooting this week!\n\nReboot is scheduled for $(date -d "$REBOOTDATE""T""$REBOOTTIME").\n\nPlease refrain from running jobs during this time, or if you do make sure to save your parameters.\n\nIf this time does not work well for you, contact one of the system admins to cancel this reboot."
