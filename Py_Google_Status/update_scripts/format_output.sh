@@ -15,26 +15,16 @@ echo "Storage Summary" >> $WORKINGDIR/disk_usage.csv
 df -h /dev/md/sd0 | tr -s '[:blank:]' ',' >> $WORKINGDIR/disk_usage.csv
 echo "" >> $WORKINGDIR/disk_usage.csv
 
-#give home directory disk usage for each user in csv
-echo "Home Directory Usage" >> $WORKINGDIR/disk_usage.csv
+#give home directory and storage directory disk usage for each user in csv
+echo -n "Home Directory Usage,," >> $WORKINGDIR/disk_usage.csv
+echo "Storage Directory Usage" >> $WORKINGDIR/disk_usage.csv
+STORAGE_SUFFIX=_storage
+STORAGE_PREFIX=/media/storage/
 for filename in /media/homes/*;do
 if [ "$filename" != "/media/homes/lost+found" ]; then
-du -sh $filename | tr -s '[:blank:]' ',' >> $WORKINGDIR/disk_usage.csv
-fi
-done
-
-#give storage directory disk usage for each user
-echo "" >> $WORKINGDIR/disk_usage.csv
-echo "" >> $WORKINGDIR/disk_usage.csv
-echo "" >> $WORKINGDIR/disk_usage.csv
-echo "" >> $WORKINGDIR/disk_usage.csv
-echo "" >> $WORKINGDIR/disk_usage.csv
-echo "" >> $WORKINGDIR/disk_usage.csv
-echo "" >> $WORKINGDIR/disk_usage.csv
-echo "Storage Usage" >> $WORKINGDIR/disk_usage.csv
-for filename in /media/storage/*;do
-if [ "$filename" != "/media/storage/lost+found" ]; then
-du -sh $filename | tr -s '[:blank:]' ',' >> $WORKINGDIR/disk_usage.csv
+echo -n $(du -sh $filename | tr -s '[:blank:]' ',') >> $WORKINGDIR/disk_usage.csv
+echo -n "," >> $WORKINGDIR/disk_usage.csv
+echo $(du -sh $STORAGE_PREFIX${filename#/media/homes/}$STORAGE_SUFFIX | tr -s '[:blank:]' ',') >> $WORKINGDIR/disk_usage.csv
 fi
 done
 
