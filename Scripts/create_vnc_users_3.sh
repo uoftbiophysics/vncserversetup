@@ -4,7 +4,9 @@
 
 while IFS=':' read -r index email || [[ -n "$email" ]]; do
 	USER=${email%@*}
-	
+	if [[ $USER == *.* ]] ; then
+		USER=${USER%%.*}
+	fi
 	if id -u $USER &>/dev/null ; then
 		echo "$USER alread exists, skipping.."
 	else

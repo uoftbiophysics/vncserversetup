@@ -10,5 +10,9 @@
 #create symbolic link to user storage on desktop
 while IFS=':' read -r index email || [[ -n "$email" ]]; do
 	USER=${email%@*}
+        if [[ $USER == *.* ]] ; then
+                USER=${USER%%.*}
+        fi
+
 	ln -sT /media/storage/"$USER"_storage /media/homes/$USER/Desktop/Storage
 done < ../Config/VNC_users.txt

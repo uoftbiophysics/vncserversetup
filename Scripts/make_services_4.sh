@@ -3,6 +3,10 @@
 #these services will run the vncservers for each VNC user at boot
 while IFS=':' read -r index email || [[ -n "$email" ]]; do
 	USER=${email%@*}
+	if [[ $USER == *.* ]] ; then
+                USER=${USER%%.*}
+        fi
+
 	if [ -f ../Config/${USER}vnc@.service ]
 	then
 		echo "../Config/${USER}vnc@.service already exists..."
