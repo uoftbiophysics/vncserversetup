@@ -28,10 +28,11 @@ running VNC servers.
 
 For each of these commands the output is stored in a CSV file. 
 
-This script should be run as a cron job, so for example if we want status updates every two minutes add the following line
+This script should be run as a cron job, so for example if we want status updates every 1- minutes add the following line
 to sudo crontab:
 
-*/2 * * * * /working_directory/format_output.sh /working_directory/
+	*/10 * * * * ~/Py_Google_Status/format_output.sh ~/Py_Google_Status/local_config/ >/dev/null 2>&1
+
 
 Note that you WILL have to change lines in this script to get it to behave with your system. For example, you must know your storage device names
 and mount points to get information about disk usage.
@@ -50,9 +51,9 @@ gspread_sheets.py.
 Next create some spreadsheets with the same Google account connected to the API. "Share" these sheets with the email entry in the JSON file,
 and start manipulating them with gspread_sheets.py.
 
-If you want regular updates, also run this script as a cron job. For example, making updates to sheets at two minute intervals would look like:
+If you want regular updates, also run this script as a non-root cron job. For example, making updates to sheets at three minute intervals, checking for completion of last format_output.sh task would look like:
 
-*/3 * * * * /usr/bin/python /working_directory/gspread_sheets.py /working_directory/
+	*/3 * * * * [ -e ~/Py_Google_Status/local_config/graphics_usage.csv ] && /usr/bin/python ~/Py_Google_Status/gspread_sheets.py ~/Py_Google_Status/local_config/ >/dev/null 2>&1
 
 *Note, cronjobs can become synchronized, so if both a sudo cron and user cron interact try to make these intervals unequal.
 
