@@ -7,7 +7,7 @@ from oauth2client.service_account import ServiceAccountCredentials
 working_directory = sys.argv[1]
 # use creds to create a client to interact with the Google Drive API
 scope = ['https://spreadsheets.google.com/feeds','https://www.googleapis.com/auth/drive' ]
-creds = ServiceAccountCredentials.from_json_keyfile_name(working_directory+'Server Status-ee587d08f610.json', scope)
+creds = ServiceAccountCredentials.from_json_keyfile_name(working_directory+'Server Status-foo.json', scope)
 client = gspread.authorize(creds)
 #dictionary format: Google Spreadsheet name: local file name
 file_dict = {'Disk Usage':'disk_usage.csv', 'CPU/MEM Usage':'cpumem_usage.csv', 'Graphics Usage':'graphics_usage.csv',
@@ -36,6 +36,7 @@ for spreadsheet_name, file_name in file_dict.iteritems():
     #define the same rectangle in the sheet
     SS = client.open(spreadsheet_name)
     worksheet = SS.get_worksheet(0)
+    worksheet.clear()
     range_string = 'A1:' + str(chr(64+xmax)) + str(ymax)
     cell_list = worksheet.range(range_string)
 
