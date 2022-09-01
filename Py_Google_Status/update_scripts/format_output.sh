@@ -58,3 +58,5 @@ nvidia-smi --query-compute-apps=pid,process_name,used_memory --format=csv >> $WO
 
 
 
+
+
