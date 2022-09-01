@@ -1,7 +1,7 @@
 #!/bin/bash
 #delete ssh users
 systemctl daemon-reload
-while IFS='' read -r email || [[ -n "$email" ]]; do
+while IFS='' read -r email && [[ -n "$email" ]]; do
 	USER=${email%@*}
 	deluser $USER
 	#rm -r /media/homes/$USER

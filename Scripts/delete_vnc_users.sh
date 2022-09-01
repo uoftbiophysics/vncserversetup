@@ -1,7 +1,7 @@
 #!/bin/bash
 #delete VNC users
 systemctl daemon-reload
-while IFS=':' read -r index email || [[ -n "$email" ]]; do
+while IFS=':' read -r index email && [[ -n "$email" ]]; do
 	USER=${email%@*}
 	systemctl stop ${USER}vnc@$index.service
 	systemctl disable ${USER}vnc@$index.service

@@ -2,7 +2,7 @@
 #Script reads users file to generate both usernames and passwords, as well as create these users
 #with necessary VNC files. User and VNC passwords are identical, and will be sent over email to users.
 
-while IFS='' read -r email || [[ -n "$email" ]]; do
+while IFS='' read -r email && [[ -n "$email" ]]; do
 	USER=${email%@*}
 	
 	if id -u $USER &>/dev/null ; then
